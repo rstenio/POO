@@ -1,0 +1,14 @@
+1.(b) A primeira linha roda, pois ClienteVip é um tipo de cliente, mas a segunda não pois um Cliente não é necessariamente um ClienteVip
+
+2.(b) Porque a classe Produto é abstrata e não permite que objetos sejam instanciados diretamente dela. A vantagem é que uma vez que não podem ser criados produtos genéricos, isso força o programador a especificar os dados de um objeto ao criá-lo.
+Com o polimorfismo, mesmo que a classe mãe não conheça a implementação do método, uma vez que eu herdar ele e definir o corpo na classe filha, a instância de qualquer objeto das classes filhas conhecerá ambos os métodos
+
+3.(c) A interface Entregavel foi usada em vez de uma classe abstrata porque o Java não permite herança múltipla. Como ProdutoFisico já faz extends de Produto, o uso de uma interface permite adicionar-lhe características extra, algo impossível se fosse mais uma classe. Numa interface, o estado não pode ser armazenado (os atributos são apenas constantes), enquanto as classes abstratas podem ter variáveis de instância (estado). Além disso, uma classe pode implementar diversas interfaces, mas só pode herdar diretamente de uma única classe abstrata
+
+4.(b)A saída será:Teclado: 110.0E-book Java: 47.5Streaming: 108.0
+A ligação dinâmica (dynamic binding) é o mecanismo que decide isso: no momento em que o código corre, a máquina virtual reconhece qual é o objeto instanciado na memória e opta pela implementação sobrescrita correta para aquele tipo
+(c) Não compila. Para a linha funcionar, deverá ser rescrita recorrendo a um cast: ((Entregavel) p1).calcularFrete("60000-000");. O tipo da referência (Produto) diz ao compilador quais os métodos disponíveis, enquanto o tipo do objeto (ProdutoFisico) define qual a lógica concreta que é, de facto, executada
+
+5.(b) A saída no ecrã será:B: Estoque insuficiente para Teclado. Disponível: 3CD
+(A linha "A" nunca será invocada visto que a exceção corta o fluxo de execução para dentro do bloco de tratamento)
+(c) O Java obriga ao tratamento das Checked Exceptions (como a do EstoqueInsuficienteException) porque ocorrem por via de regras de negócio ou de problemas contornáveis no meio ambiente em que o programa corre (devemos intervir). As exceções não verificadas (PagamentoRecusadoException por RuntimeException) são tratadas como falhas de programação ou limites não previstos, o que isenta o programador da burocracia de colocar o throws sistematicamente no código.
